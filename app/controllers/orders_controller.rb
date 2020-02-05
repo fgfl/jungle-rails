@@ -2,13 +2,12 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     p @order[:id]
+
     line_items = LineItem.where(order_id: @order[:id])
-    p line_items
+
     product_ids = line_items.map { |item| item[:product_id] }
-    p "produc id: #{product_ids}"
     products = Product.where(id: product_ids)
-    p "PRODUCTS ==== #{products.inspect}"
-    # raise products.inspect
+
     @order_items = line_items.map do |item|
       {
         product: products.select { |product| product[:id] == item[:product_id] }[0],
@@ -16,7 +15,6 @@ class OrdersController < ApplicationController
         total_price_cents: item.total_price_cents,
       }
     end
-    p "ORDER ITEM ====== #{@order_items}"
   end
 
   def create
