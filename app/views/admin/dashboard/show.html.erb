@@ -1,8 +1,19 @@
 <h1>Admin::Dashboard#show</h1>
-<p>product count:
-  <%= @product_count %>
-</p><br>
-
-<p>Category count:
-  <%= @category_count %>
-</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Product Count</th>
+      <th>Category Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= @product_count %>
+      </td>
+      <td>
+        <%= @category_count %>
+      </td>
+    </tr>
+  </tbody>
+</table>
