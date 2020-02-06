@@ -10,9 +10,15 @@
     <tr>
       <td>
         <%= @product_count %>
+        <br>
+        <%= link_to "Products", [:admin, :products], class: 'btn btn-info' %> 
       </td>
       <td>
-        <%= @category_count %>
+        <%= @category_count %> <br>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, category, class: 'btn btn-info' %>
+          <br>
+        <% end %>
       </td>
     </tr>
   </tbody>
