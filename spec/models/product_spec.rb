@@ -25,9 +25,8 @@ RSpec.describe Product, type: :model do
         quantity: 5757,
         category_id: @category[:id],
       })
-      @product.save
       expect(@product).to_not be_valid
-      expect(@product.errors.full_messages[0]).to eq("Name can't be blank")
+      expect(@product.errors.full_messages.include?("Name can't be blank")).to be_truthy
     end
 
     it "should have a price" do
@@ -38,7 +37,7 @@ RSpec.describe Product, type: :model do
         category_id: @category[:id],
       })
       expect(@product).to_not be_valid
-      expect(@product.errors.full_messages[0]).to eq("Price cents is not a number")
+      expect(@product.errors.full_messages.include?("Price cents is not a number")).to be_truthy
     end
 
     it "should have a quantity" do
@@ -49,7 +48,7 @@ RSpec.describe Product, type: :model do
         category_id: @category[:id],
       })
       expect(@product).to_not be_valid
-      expect(@product.errors.full_messages[0]).to eq("Quantity can't be blank")
+      expect(@product.errors.full_messages.include?("Quantity can't be blank")).to be_truthy
     end
 
     it "should have a category" do
@@ -60,7 +59,7 @@ RSpec.describe Product, type: :model do
         category_id: nil,
       })
       expect(@product).to_not be_valid
-      expect(@product.errors.full_messages[0]).to eq("Category can't be blank")
+      expect(@product.errors.full_messages.include?("Category can't be blank")).to be_truthy
     end
   end
 end
