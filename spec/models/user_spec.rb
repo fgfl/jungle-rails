@@ -80,6 +80,16 @@ RSpec.describe User, type: :model do
   end
 
   describe "Password" do
-    it "is greater than the minimum length"
+    it "is greater than the minimum length" do
+      @user = User.new(
+        first_name: "Joe",
+        last_name: "Shmoe",
+        email: "Joe@shmoe.com",
+        password: "a",
+        password_confirmation: "a",
+      )
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages.any? { |err| err.include?("Password is too short") }).to be_truthy
+    end
   end
 end
