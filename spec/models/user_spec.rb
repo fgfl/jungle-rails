@@ -92,4 +92,41 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages.any? { |err| err.include?("Password is too short") }).to be_truthy
     end
   end
+
+  describe ".authenticate_with_credentials" do
+    before(:each) do
+      @user = User.create(
+        first_name: "Joe",
+        last_name: "Shmoe",
+        email: "JOE@SHMOE.COM",
+        password: "test",
+        password_confirmation: "test",
+      )
+    end
+
+    it "should return a User instance for viable login" do
+      user = User.authenticate_with_credentials("JOE@SHMOE.COM", "test")
+      expect(user).to be_kind_of User
+    end
+
+    it "should return nil for invalid email" do
+      user = User.authenticate_with_credentials("no@SHMOE.COM", "test")
+      expect(user).to be_nil
+    end
+
+    it "should return nil for invalid password" do
+      user = User.authenticate_with_credentials("JOE@SHMOE.COM", "wrongPassword")
+      expect(user).to be_nil
+    end
+
+    it "should return a User if the entered email has leading or ending spaces" do
+      user = User.authenticate_with_credentials(" JOE@SHMOE.COM ", "test")
+      expect(user).to be_kind_of User
+    end
+
+    it "should return a User if the entered email is in the wrong case" do
+      user = User.authenticate_with_credentials("JoE@ShmOe.Com", "test")
+      expect(user).to be_kind_of User
+    end
+  end
 end
