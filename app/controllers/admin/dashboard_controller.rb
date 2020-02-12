@@ -1,6 +1,4 @@
-class Admin::DashboardController < ApplicationController
-  http_basic_authenticate_with name: Rails.configuration.admin_login[:name],
-                               password: Rails.configuration.admin_login[:password]
+class Admin::DashboardController < Admin::BaseController
 
   def show
     @product_count = Product.count
