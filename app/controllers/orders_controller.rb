@@ -3,12 +3,14 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    p @order[:id]
 
     line_items = LineItem.where(order_id: @order[:id])
 
     product_ids = line_items.map { |item| item[:product_id] }
     products = Product.where(id: product_ids)
+
+    user = User.find_by(id: session[:user_id])
+    @email = user.email unless user.nil?
 
     @order_items = line_items.map do |item|
       {

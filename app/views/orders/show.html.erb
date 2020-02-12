@@ -6,6 +6,9 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <% if @email %>
+      <h4>Email: <%= @email%></h4>
+    <% end %>
   </div>
 
   <table class="table table-bordered">
