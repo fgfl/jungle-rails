@@ -7,6 +7,9 @@
   <% if enhanced_cart.empty? %>
    <h2 class="alert alert-info">Your cart is empty. Please add some items.</h2>
   <% else %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :h3, "#{key}: #{value}", class: "alert alert-danger"%>
+    <% end %>
     <div class="panel panel-default items">
       <table class="table table-bordered">
         <thead>
