@@ -51,3 +51,15 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Stripe
 
 ## Images
+
+![Sign up as a new user](https://raw.githubusercontent.com/fgfl/jungle-rails/master/docs/signUP.gif)
+
+Sign up as a new user.
+
+![Add items to the cart and submit the order](https://raw.githubusercontent.com/fgfl/jungle-rails/master/docs/buy_sequence.gif)
+
+Buy some items.
+
+![Log in as an admin to perform admin commands](https://raw.githubusercontent.com/fgfl/jungle-rails/master/docs/admin.gif)
+
+Log in as an admin and add a new category.
