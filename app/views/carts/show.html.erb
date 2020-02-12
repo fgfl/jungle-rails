@@ -6,6 +6,7 @@
 
   <% if enhanced_cart.empty? %>
    <h2 class="alert alert-info">Your cart is empty. Please add some items.</h2>
+   <%= link_to "Home", root_path, class: "btn btn-info"%>
   <% else %>
     <% flash.each do |key, value| %>
       <%= content_tag :h3, "#{key}: #{value}", class: "alert alert-danger"%>
