@@ -35,6 +35,10 @@ This was an inherited code base where we were given the task to fix some bugs an
 7. Put Stripe (test) keys into appropriate .env vars
 8. Run `bin/rails s -b 0.0.0.0` to start the server
 
+## RSPEC Testing
+
+Run the RSPEC tests with `bin/rspec` or `bin/rspec spec/<test file>`
+
 ## Stripe Testing
 
 Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
@@ -42,6 +46,14 @@ Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
 Enter a future date and any three digits for the CVC.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
+
+## Email previews
+
+Preview the email at http://localhost:3000/rails/mailers/user_mailer/order_email_preview
+
+## View Routes
+
+The routes can be viewed with the `bin/rake routes` command or at http://localhost:3000/rails/info/routes
 
 ## Dependencies
 
