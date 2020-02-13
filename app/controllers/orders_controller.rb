@@ -1,3 +1,4 @@
+
 class OrdersController < ApplicationController
   # before_filter :authorize
 
@@ -9,8 +10,7 @@ class OrdersController < ApplicationController
     product_ids = line_items.map { |item| item[:product_id] }
     products = Product.where(id: product_ids)
 
-    user = User.find_by(id: session[:user_id])
-    @email = user.email unless user.nil?
+    @email = current_user.email unless current_user.nil?
 
     @order_items = line_items.map do |item|
       {
@@ -27,7 +27,8 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
-      redirect_to order, notice: "Your Order has been placed."
+      UserMailer.order_email(current_user, order).deliver_now unless current_user.nil?
+      redirect_to order, flash: { Notice: "Your Order has been placed." }
     else
       redirect_to cart_path, flash: { error: "Error creating order." }
     end
